@@ -1,0 +1,19 @@
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: update
+  
+  application:
+    name: nbc-w5-assignment
+
+---
+
+spring:
+  profiles:
+    active: local
+
+---
+
+spring:
+  profiles:
+    active: prod
