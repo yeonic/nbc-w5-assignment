@@ -34,9 +34,9 @@ public class UserController {
     return Response.of(service.getUserById(userId));
   }
 
-  @PostMapping
+  @PostMapping("/signup")
   @ResponseStatus(HttpStatus.CREATED)
-  public Response<UserDto.Res> addUser(@RequestBody UserDto.Req req) {
+  public Response<UserDto.Res> signUp(@RequestBody UserDto.Req req) {
     return Response.of(service.saveUser(req));
   }
 
