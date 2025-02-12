@@ -14,6 +14,7 @@ import org.springframework.context.annotation.Configuration;
 public class UserConfig {
 
   private final SpringDataJpaUserRepository springDataJpaUserRepository;
+  private final PasswordEncoder passwordEncoder;
 
   @Bean
   public UserRepository userRepository() {
@@ -22,11 +23,11 @@ public class UserConfig {
 
   @Bean
   public UserService userService() {
-    return new UserService(userRepository());
+    return new UserService(userRepository(), passwordEncoder);
   }
 
   @Bean
   public LoginService loginService() {
-    return new LoginService(userRepository());
+    return new LoginService(userRepository(), passwordEncoder);
   }
 }
