@@ -1,6 +1,6 @@
-package me.yeon.nbcw5assignment.domain.user;
+package me.yeon.nbcw5assignment.domain.user.dto;
 
-import me.yeon.nbcw5assignment.domain.user.dto.UserDto;
+import me.yeon.nbcw5assignment.domain.user.User;
 
 public abstract class UserMapper {
 

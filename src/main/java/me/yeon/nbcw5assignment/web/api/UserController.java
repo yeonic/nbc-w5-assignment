@@ -7,6 +7,7 @@ import me.yeon.nbcw5assignment.domain.user.dto.UserDto.Res;
 import me.yeon.nbcw5assignment.domain.user.service.UserService;
 import me.yeon.nbcw5assignment.global.dto.Response;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -48,7 +49,7 @@ public class UserController {
     return Response.of(service.updatePassword(userId, password));
   }
 
-  @PostMapping("/{userId}")
+  @DeleteMapping("/{userId}")
   @ResponseStatus(HttpStatus.NO_CONTENT)
   public void delete(@PathVariable("userId") Long userId) {
     service.deleteUser(userId);

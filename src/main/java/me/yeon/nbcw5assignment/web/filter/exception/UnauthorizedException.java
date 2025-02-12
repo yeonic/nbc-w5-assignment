@@ -1,4 +1,4 @@
-package me.yeon.nbcw5assignment.domain.user.exception;
+package me.yeon.nbcw5assignment.web.filter.exception;
 
 public class UnauthorizedException extends RuntimeException {
 

@@ -9,8 +9,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import lombok.extern.slf4j.Slf4j;
-import me.yeon.nbcw5assignment.domain.user.exception.UnauthorizedException;
 import me.yeon.nbcw5assignment.web.SessionConst;
+import me.yeon.nbcw5assignment.web.filter.exception.UnauthorizedException;
 import org.springframework.util.PatternMatchUtils;
 
 @Slf4j

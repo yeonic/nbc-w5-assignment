@@ -7,8 +7,10 @@ import me.yeon.nbcw5assignment.domain.user.User;
 import me.yeon.nbcw5assignment.domain.user.dao.UserRepository;
 import me.yeon.nbcw5assignment.domain.user.dto.UserDto;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@Transactional
 @RequiredArgsConstructor
 public class LoginService {
 
