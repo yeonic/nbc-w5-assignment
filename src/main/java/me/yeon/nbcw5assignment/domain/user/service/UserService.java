@@ -6,6 +6,7 @@ import me.yeon.nbcw5assignment.domain.user.User;
 import me.yeon.nbcw5assignment.domain.user.dao.UserRepository;
 import me.yeon.nbcw5assignment.domain.user.dto.UserDto;
 import me.yeon.nbcw5assignment.domain.user.dto.UserMapper;
+import me.yeon.nbcw5assignment.global.config.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 public class UserService {
 
   private final UserRepository repository;
+  private final PasswordEncoder passwordEncoder;
 
   public UserDto.Res getUserById(Long userId) {
     User fiudUser = repository.findById(userId).orElseThrow();
@@ -31,7 +33,7 @@ public class UserService {
   public UserDto.Res saveUser(UserDto.Req req) {
     User user = User.builder()
         .email(req.getEmail())
-        .password(req.getPassword())
+        .password(passwordEncoder.encode(req.getPassword()))
         .build();
 
     User saveUser = repository.save(user);
@@ -39,7 +41,7 @@ public class UserService {
   }
 
   public UserDto.Res updatePassword(Long userId, String password) {
-    User updateUser = repository.updatePassword(userId, password);
+    User updateUser = repository.updatePassword(userId, passwordEncoder.encode(password));
     return UserMapper.toRes(updateUser);
   }
 
