@@ -1,5 +1,8 @@
 package me.yeon.nbcw5assignment.domain.user.dto;
 
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.NotBlank;
 import java.time.LocalDateTime;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -12,7 +15,12 @@ public class UserDto {
   @NoArgsConstructor(access = AccessLevel.PROTECTED)
   public static class Req {
 
+    @NotBlank
+    @Email(regexp = "^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$")
     private String email;
+
+    @NotBlank
+    @Max(80)
     private String password;
 
     @Builder

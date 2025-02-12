@@ -1,5 +1,7 @@
 package me.yeon.nbcw5assignment.domain.schedule.dto;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import java.time.LocalDateTime;
 import lombok.AccessLevel;
 import lombok.Builder;
@@ -12,7 +14,11 @@ public class ScheduleDto {
   @NoArgsConstructor(access = AccessLevel.PROTECTED)
   public static class Req {
 
+    @NotBlank
+    @Size(max = 200)
     private String title;
+
+    @Size(max = 3500)
     private String content;
 
     @Builder

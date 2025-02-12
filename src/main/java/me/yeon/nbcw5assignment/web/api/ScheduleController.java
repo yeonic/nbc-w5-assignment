@@ -8,6 +8,7 @@ import me.yeon.nbcw5assignment.domain.user.User;
 import me.yeon.nbcw5assignment.global.dto.Response;
 import me.yeon.nbcw5assignment.web.SessionConst;
 import org.springframework.http.HttpStatus;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -42,7 +43,7 @@ public class ScheduleController {
   @ResponseStatus(HttpStatus.CREATED)
   public Response<ScheduleDto.Res> addSchedule(
       @SessionAttribute(name = SessionConst.LOGIN_MEMBER) User currentUser,
-      @RequestBody ScheduleDto.Req req
+      @Validated @RequestBody ScheduleDto.Req req
   ) {
     return Response.of(service.addSchedule(currentUser, req.getTitle(), req.getContent()));
   }
@@ -50,7 +51,7 @@ public class ScheduleController {
   @PatchMapping("/{scheduleId}")
   public Response<ScheduleDto.Res> update(
       @PathVariable(name = "scheduleId") Long scheduleId,
-      @RequestBody ScheduleDto.Req req,
+      @Validated @RequestBody ScheduleDto.Req req,
       @SessionAttribute(name = SessionConst.LOGIN_MEMBER) User currentUser
   ) {
     return Response.of(service.updateSchedule(scheduleId, req.getTitle(), req.getContent()));
