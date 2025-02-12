@@ -7,6 +7,7 @@ import me.yeon.nbcw5assignment.domain.user.dto.UserDto.Res;
 import me.yeon.nbcw5assignment.domain.user.service.UserService;
 import me.yeon.nbcw5assignment.global.dto.Response;
 import org.springframework.http.HttpStatus;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -37,7 +38,7 @@ public class UserController {
 
   @PostMapping("/signup")
   @ResponseStatus(HttpStatus.CREATED)
-  public Response<UserDto.Res> signUp(@RequestBody UserDto.Req req) {
+  public Response<UserDto.Res> signUp(@Validated @RequestBody UserDto.Req req) {
     return Response.of(service.saveUser(req));
   }
 

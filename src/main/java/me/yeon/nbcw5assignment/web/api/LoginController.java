@@ -10,6 +10,7 @@ import me.yeon.nbcw5assignment.domain.user.service.LoginService;
 import me.yeon.nbcw5assignment.global.dto.Response;
 import me.yeon.nbcw5assignment.web.SessionConst;
 import org.springframework.http.HttpStatus;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -24,7 +25,10 @@ public class LoginController {
   private final LoginService service;
 
   @PostMapping("/login")
-  public Response<UserDto.Res> login(@RequestBody UserDto.Req req, HttpServletRequest request) {
+  public Response<UserDto.Res> login(
+      @Validated @RequestBody UserDto.Req req,
+      HttpServletRequest request
+  ) {
     User loginUser = service.login(req);
 
     HttpSession session = request.getSession();
