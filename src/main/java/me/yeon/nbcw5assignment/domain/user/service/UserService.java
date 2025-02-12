@@ -3,9 +3,9 @@ package me.yeon.nbcw5assignment.domain.user.service;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import me.yeon.nbcw5assignment.domain.user.User;
-import me.yeon.nbcw5assignment.domain.user.UserMapper;
 import me.yeon.nbcw5assignment.domain.user.dao.UserRepository;
 import me.yeon.nbcw5assignment.domain.user.dto.UserDto;
+import me.yeon.nbcw5assignment.domain.user.dto.UserMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

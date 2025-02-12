@@ -11,7 +11,7 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @RequiredArgsConstructor
-public class SpringDataJpaConfig {
+public class UserConfig {
 
   private final SpringDataJpaUserRepository springDataJpaUserRepository;
 
