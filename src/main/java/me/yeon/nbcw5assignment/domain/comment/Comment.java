@@ -9,12 +9,14 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import lombok.AccessLevel;
 import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import me.yeon.nbcw5assignment.domain.BaseEntity;
 import me.yeon.nbcw5assignment.domain.schedule.Schedule;
 import me.yeon.nbcw5assignment.domain.user.User;
 
 @Entity
+@Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Comment extends BaseEntity {
 
@@ -27,11 +29,11 @@ public class Comment extends BaseEntity {
 
   @ManyToOne
   @JoinColumn(name = "user_id")
-  User user;
+  private User user;
 
   @ManyToOne
   @JoinColumn(name = "schedule_id")
-  Schedule schedule;
+  private Schedule schedule;
 
   @Builder
   public Comment(Long id, String content, User user, Schedule schedule) {

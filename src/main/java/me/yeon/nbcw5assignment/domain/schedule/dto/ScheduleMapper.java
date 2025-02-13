@@ -20,4 +20,5 @@ public abstract class ScheduleMapper {
         .updatedAt(schedule.getUpdatedAt())
         .build();
   }
+
 }
