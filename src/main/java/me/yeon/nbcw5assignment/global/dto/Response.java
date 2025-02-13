@@ -7,7 +7,6 @@ import java.util.List;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import org.springframework.data.domain.Pageable;
 
 @JsonInclude(Include.NON_NULL)
 @Getter
@@ -16,13 +15,13 @@ public class Response<T> {
 
   private T data;
 
-  private Pageable page;
+  private Paging.Res page;
 
   private Response(T data) {
     this.data = data;
   }
 
-  private Response(T data, Pageable page) {
+  private Response(T data, Paging.Res page) {
     this.data = data;
     this.page = page;
   }
@@ -36,7 +35,7 @@ public class Response<T> {
     return new Response<>(data);
   }
 
-  public static <T> Response<T> of(T data, Pageable page) {
+  public static <T> Response<T> of(T data, Paging.Res page) {
     return new Response<>(data, page);
   }
 }
