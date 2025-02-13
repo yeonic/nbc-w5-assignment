@@ -35,6 +35,11 @@ public class JpaCommentRepository implements CommentRepository {
   }
 
   @Override
+  public Long countAllByScheduleId(Long scheduleId) {
+    return repository.countAllByScheduleId(scheduleId);
+  }
+
+  @Override
   public List<Comment> findAllByUserId(Long userId) {
     return repository.findAllByUserId(userId);
   }

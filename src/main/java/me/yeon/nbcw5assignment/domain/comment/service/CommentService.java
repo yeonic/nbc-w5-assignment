@@ -47,6 +47,10 @@ public class CommentService {
     return CommentMapper.toRes(repository.update(findComment.getId(), comment));
   }
 
+  public long getCount(Long scheduleId) {
+    return repository.countAllByScheduleId(scheduleId);
+  }
+
   public void deleteComment(Long commentId) {
     repository.delete(commentId);
   }

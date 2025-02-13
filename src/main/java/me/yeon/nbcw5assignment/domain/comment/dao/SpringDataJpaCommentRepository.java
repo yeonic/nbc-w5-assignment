@@ -8,5 +8,8 @@ public interface SpringDataJpaCommentRepository extends JpaRepository<Comment, L
 
   List<Comment> findAllByScheduleId(Long scheduleId);
 
+  Long countAllByScheduleId(Long scheduleId);
+
   List<Comment> findAllByUserId(Long userId);
+
 }
