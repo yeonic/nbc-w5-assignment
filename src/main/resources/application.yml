@@ -1,0 +1,22 @@
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+  messages:
+    basename: errors
+  
+  application:
+    name: nbc-w5-assignment
+
+---
+
+spring:
+  profiles:
+    active: local
+
+---
+
+spring:
+  profiles:
+    active: prod
