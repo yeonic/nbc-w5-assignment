@@ -1,9 +1,10 @@
 package me.yeon.nbcw5assignment.domain.schedule.dao;
 
-import java.util.List;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import me.yeon.nbcw5assignment.domain.schedule.Schedule;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Repository;
 
 @Repository
@@ -30,8 +31,13 @@ public class JpaScheduleRepository implements ScheduleRepository {
   }
 
   @Override
-  public List<Schedule> findAllByUserId(Long userId) {
-    return repository.findAllByUserId(userId);
+  public Page<Schedule> findAll(Pageable pageable) {
+    return repository.findAll(pageable);
+  }
+
+  @Override
+  public Page<Schedule> findAllByUserId(Long userId, Pageable pageable) {
+    return repository.findAllByUserId(userId, pageable);
   }
 
   @Override

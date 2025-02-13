@@ -21,7 +21,8 @@ import org.springframework.web.servlet.HandlerExceptionResolver;
 public class LoginCheckFilter implements Filter {
 
   private final HandlerExceptionResolver resolver;
-  private static final String[] whitelist = {"/api/login", "/api/logout", "/api/users/signup"};
+  private static final String[] whitelist =
+      {"/api/login", "/api/logout", "/api/users/signup", "/api/schedules"};
 
   @Override
   public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse,

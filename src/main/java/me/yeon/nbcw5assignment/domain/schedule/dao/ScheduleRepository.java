@@ -1,8 +1,9 @@
 package me.yeon.nbcw5assignment.domain.schedule.dao;
 
-import java.util.List;
 import java.util.Optional;
 import me.yeon.nbcw5assignment.domain.schedule.Schedule;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 public interface ScheduleRepository {
 
@@ -12,7 +13,9 @@ public interface ScheduleRepository {
 
   Optional<Schedule> findById(Long scheduleId);
 
-  List<Schedule> findAllByUserId(Long userId);
+  Page<Schedule> findAll(Pageable pageable);
+
+  Page<Schedule> findAllByUserId(Long userId, Pageable pageable);
 
   void delete(Long scheduleId);
 }
