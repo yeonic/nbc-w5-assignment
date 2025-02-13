@@ -14,7 +14,10 @@ public interface CommentRepository {
 
   List<Comment> findAllByScheduleId(Long scheduleId);
 
+  Long countAllByScheduleId(Long scheduleId);
+
   List<Comment> findAllByUserId(Long userId);
+
 
   void delete(Long commentId);
 }
