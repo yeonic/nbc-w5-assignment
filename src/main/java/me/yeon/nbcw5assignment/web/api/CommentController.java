@@ -8,6 +8,7 @@ import me.yeon.nbcw5assignment.domain.user.User;
 import me.yeon.nbcw5assignment.global.dto.Response;
 import me.yeon.nbcw5assignment.web.SessionConst;
 import org.springframework.http.HttpStatus;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -38,7 +39,7 @@ public class CommentController {
   public Response<CommentDto.Res> addComment(
       @PathVariable(name = "scheduleId") Long scheduleId,
       @SessionAttribute(name = SessionConst.LOGIN_MEMBER) User currentUser,
-      @RequestBody CommentDto.Res req
+      @Validated @RequestBody CommentDto.Req req
   ) {
     return Response.of(service.addComment(scheduleId, req.getContent(), currentUser));
   }
@@ -47,7 +48,7 @@ public class CommentController {
   public Response<CommentDto.Res> update(
       @PathVariable(name = "commentId") Long commentId,
       @SessionAttribute(name = SessionConst.LOGIN_MEMBER) User currentUser,
-      @RequestBody CommentDto.Res req) {
+      @Validated @RequestBody CommentDto.Req req) {
     return Response.of(service.updateComment(commentId, req.getContent()));
   }
 

@@ -32,20 +32,28 @@ public class ScheduleDto {
   @NoArgsConstructor(access = AccessLevel.PROTECTED)
   public static class Res {
 
+    private Long id;
     private String userEmail;
     private String title;
     private String content;
+    private Long commentCount = 0L;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 
     @Builder
-    public Res(String userEmail, String title, String content, LocalDateTime createdAt,
-        LocalDateTime updatedAt) {
+    public Res(Long id, String userEmail, String title, String content, Long commentCount,
+        LocalDateTime createdAt, LocalDateTime updatedAt) {
+      this.id = id;
       this.userEmail = userEmail;
       this.title = title;
       this.content = content;
+      this.commentCount = commentCount == null ? 0L : commentCount;
       this.createdAt = createdAt;
       this.updatedAt = updatedAt;
+    }
+
+    public void putCommentCount(Long count) {
+      this.commentCount = count;
     }
   }
 }

@@ -11,10 +11,12 @@ public abstract class ScheduleMapper {
         .build();
   }
 
-  public static ScheduleDto.Res toRes(Schedule schedule) {
+  public static ScheduleDto.Res toRes(Schedule schedule, Long commentCount) {
     return ScheduleDto.Res.builder()
+        .id(schedule.getId())
         .userEmail(schedule.getUser().getEmail())
         .title(schedule.getTitle())
+        .commentCount(commentCount)
         .content(schedule.getContent())
         .createdAt(schedule.getCreatedAt())
         .updatedAt(schedule.getUpdatedAt())

@@ -52,7 +52,7 @@ public class DomainConfig {
 
   @Bean
   public ScheduleService scheduleService() {
-    return new ScheduleService(scheduleRepository());
+    return new ScheduleService(scheduleRepository(), commentRepository());
   }
 
   // CommentConfig
