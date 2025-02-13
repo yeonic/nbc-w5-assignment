@@ -14,6 +14,8 @@ import lombok.NoArgsConstructor;
 import me.yeon.nbcw5assignment.domain.BaseEntity;
 import me.yeon.nbcw5assignment.domain.schedule.Schedule;
 import me.yeon.nbcw5assignment.domain.user.User;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 
 @Entity
 @Getter
@@ -28,10 +30,12 @@ public class Comment extends BaseEntity {
   private String content;
 
   @ManyToOne
+  @OnDelete(action = OnDeleteAction.CASCADE)
   @JoinColumn(name = "user_id")
   private User user;
 
   @ManyToOne
+  @OnDelete(action = OnDeleteAction.CASCADE)
   @JoinColumn(name = "schedule_id")
   private Schedule schedule;
 
