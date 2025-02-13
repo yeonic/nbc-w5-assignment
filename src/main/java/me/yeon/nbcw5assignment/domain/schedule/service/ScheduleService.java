@@ -31,9 +31,8 @@ public class ScheduleService {
 
     String updateTitle = title == null ? schedule.getTitle() : title;
     String updateContent = content == null ? schedule.getContent() : content;
-    schedule.updateSchedule(updateTitle, updateContent);
 
-    return ScheduleMapper.toRes(schedule);
+    return ScheduleMapper.toRes(repository.update(scheduleId, updateTitle, updateContent));
   }
 
   public ScheduleDto.Res getSchedule(Long scheduleId) {
