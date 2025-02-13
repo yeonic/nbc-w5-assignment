@@ -1,6 +1,5 @@
 package me.yeon.nbcw5assignment.domain.schedule.service;
 
-import java.util.List;
 import lombok.RequiredArgsConstructor;
 import me.yeon.nbcw5assignment.domain.comment.dao.CommentRepository;
 import me.yeon.nbcw5assignment.domain.schedule.Schedule;
@@ -8,6 +7,11 @@ import me.yeon.nbcw5assignment.domain.schedule.dao.ScheduleRepository;
 import me.yeon.nbcw5assignment.domain.schedule.dto.ScheduleDto;
 import me.yeon.nbcw5assignment.domain.schedule.dto.ScheduleMapper;
 import me.yeon.nbcw5assignment.domain.user.User;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -45,13 +49,22 @@ public class ScheduleService {
     return ScheduleMapper.toRes(schedule, commentCount);
   }
 
-  public List<ScheduleDto.Res> getSchedulesOfUser(Long userId) {
-    return repository.findAllByUserId(userId)
-        .stream().map(schedule -> {
-          Long commentCount = commentRepository.countAllByScheduleId(schedule.getId());
-          return ScheduleMapper.toRes(schedule, commentCount);
-        })
-        .toList();
+  public Page<ScheduleDto.Res> getSchedules(int pageNo, int pageSize, String criteria) {
+    Pageable pageable = PageRequest.of(pageNo, pageSize, Sort.by(Direction.DESC, criteria));
+    return repository.findAll(pageable).<ScheduleDto.Res>map(schedule -> {
+      Long commentCount = commentRepository.countAllByScheduleId(schedule.getId());
+      return ScheduleMapper.toRes(schedule, commentCount);
+    });
+  }
+
+  public Page<ScheduleDto.Res> getSchedulesOfUser(Long userId, int pageNo, int pageSize,
+      String creteria) {
+    Pageable pageable = PageRequest.of(pageNo, pageSize, Sort.by(Direction.DESC, creteria));
+
+    return repository.findAllByUserId(userId, pageable).map(schedule -> {
+      Long commentCount = commentRepository.countAllByScheduleId(schedule.getId());
+      return ScheduleMapper.toRes(schedule, commentCount);
+    });
   }
 
   public void deleteSchedule(Long scheduleId) {

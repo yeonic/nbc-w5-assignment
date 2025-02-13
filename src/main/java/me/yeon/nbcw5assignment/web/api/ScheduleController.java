@@ -3,10 +3,12 @@ package me.yeon.nbcw5assignment.web.api;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import me.yeon.nbcw5assignment.domain.schedule.dto.ScheduleDto;
+import me.yeon.nbcw5assignment.domain.schedule.dto.ScheduleDto.Res;
 import me.yeon.nbcw5assignment.domain.schedule.service.ScheduleService;
 import me.yeon.nbcw5assignment.domain.user.User;
 import me.yeon.nbcw5assignment.global.dto.Response;
 import me.yeon.nbcw5assignment.web.SessionConst;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -16,6 +18,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttribute;
@@ -29,9 +32,18 @@ public class ScheduleController {
 
   @GetMapping
   public Response<List<ScheduleDto.Res>> schedulesOfUser(
-      @SessionAttribute(name = SessionConst.LOGIN_MEMBER) User currentUser
+      @RequestParam(required = false, defaultValue = "1", value = "pageNo") int pageNo,
+      @RequestParam(required = false, defaultValue = "10", value = "pageSize") int pageSize,
+      @RequestParam(required = false, defaultValue = "updatedAt", value = "criteria") String criteria,
+      @SessionAttribute(name = SessionConst.LOGIN_MEMBER, required = false) User currentUser
   ) {
-    return Response.of(service.getSchedulesOfUser(currentUser.getId()));
+    if (currentUser == null) {
+      Page<Res> all = service.getSchedules(pageNo - 1, pageSize, criteria);
+      return Response.of(all.getContent(), all.getPageable());
+    }
+    Page<Res> ofUser = service.getSchedulesOfUser(currentUser.getId(), pageNo - 1, pageSize,
+        criteria);
+    return Response.of(ofUser.getContent(), ofUser.getPageable());
   }
 
   @GetMapping("/{scheduleId}")
