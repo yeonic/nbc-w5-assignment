@@ -7,7 +7,7 @@
 | 목적     | Spring Data JPA를 통해 DB에 데이터를 저장하는 Web API를 구현할 수 있다. |
 | 기간     | 2025.2.11 ~ 2025.2.13                                |
 | 설명     | User, Schedule, Comment로 구성된 일정 관리 앱의 백엔드 구성.        |
-| 사용 기술  | Java, SpringMVC, JPA, SpringDataJpa                  |
+| 사용 기술  | Java, SpringMVC, JPA, SpringDataJPA                 |
 | JDK    | Amazon Corretto 17.0.13 - aarch64                    |
 | Spring | Boot 3.4.2, Core 6.2.2                               |
 
